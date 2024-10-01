@@ -1,3 +1,4 @@
+use std::time::Instant;
 
 #[derive(Clone)]
 struct Hanoy{
@@ -89,7 +90,11 @@ impl Iterator for HanoyIter{
 }
 
 fn main(){
-    let hanoy=Hanoy::new(3);
+    let start=Instant::now();
     
-    hanoy.iter().for_each(|x|{x.print()});
+    let hanoy=Hanoy::new(13);
+    
+    hanoy.iter().enumerate().for_each(|(i,x)|{println!("Step {}",i);x.print()});
+    
+    println!("Duration: {} ms",(Instant::now()-start).as_millis());
 }
